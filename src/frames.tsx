@@ -11,6 +11,230 @@ export type FrameTemplate = {
 
 export const templates: FrameTemplate[] = [
   {
+    id: 'spotify-strip',
+    name: 'Spotify Strip',
+    photoCount: 3,
+    render: (photos, isPreview = false) => {
+      const Strip = () => (
+        <div className={cn("relative flex flex-col items-center shadow-sm", isPreview ? "w-full bg-[#6a1a1a]" : "w-[300px] bg-[#6a1a1a]")}>
+          
+          {/* Header */}
+          <div className={cn("w-full flex justify-center items-center text-white tracking-wider font-medium", isPreview ? "pt-2 text-[6px]" : "pt-8 text-[12px]")}>
+            PHOTOBOOTH TRE-PAGIA
+          </div>
+
+          {/* Spotify Barcode Mock */}
+          <div className={cn("w-full flex items-center justify-center text-white", isPreview ? "mt-1 mb-2 gap-[2px]" : "mt-4 mb-6 gap-2")}>
+             {/* Spotify icon mock */}
+             <div className={cn("rounded-full bg-white flex flex-col items-center justify-center overflow-hidden", isPreview ? "w-3 h-3 gap-[1px]" : "w-10 h-10 gap-[3px]")}>
+                 <div className={cn("bg-[#6a1a1a] rounded-full mt-[1px]", isPreview ? "w-2 h-[1px]" : "w-6 h-[2px]")}></div>
+                 <div className={cn("bg-[#6a1a1a] rounded-full", isPreview ? "w-[10px] h-[1px]" : "w-8 h-[2px]")}></div>
+                 <div className={cn("bg-[#6a1a1a] rounded-full mb-[1px]", isPreview ? "w-1.5 h-[1px]" : "w-5 h-[2px]")}></div>
+             </div>
+             {/* Bars mock */}
+             <div className={cn("flex items-center", isPreview ? "gap-[1px] h-2.5 ml-1" : "gap-1 h-8 ml-3")}>
+               {[2, 4, 3, 5, 2, 6, 3, 4, 2, 5, 3, 6, 2, 4, 3, 5, 2].map((h, i) => (
+                  <div key={i} className="bg-white rounded-[1px]" style={{ width: isPreview ? '1.5px' : '4px', height: `${h * 15}%` }}></div>
+               ))}
+             </div>
+          </div>
+
+          {/* Photos */}
+          <div className={cn("w-full flex flex-col z-10", isPreview ? "px-1.5 gap-1.5" : "px-6 gap-6")}>
+            {Array.from({ length: 3 }).map((_, i) => (
+              <div key={i} className="bg-[#dfd3c5] flex items-center justify-center relative p-1 shadow-sm" style={{ aspectRatio: '3/2' }}>
+                 <div className="w-full h-full overflow-hidden border border-black/10">
+                   {photos[i] ? (
+                    <img src={photos[i]!} alt={`Photo ${i+1}`} className="w-full h-full object-cover" />
+                  ) : (
+                    <div className="text-gray-400 text-xs w-full h-full flex items-center justify-center bg-gray-200">Photo {i+1}</div>
+                  )}
+                 </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Footer Text */}
+          <div className={cn("w-full flex flex-col items-center justify-center text-white", isPreview ? "mt-2 mb-2" : "mt-8 mb-8")}>
+             <span className={cn("font-serif italic", isPreview ? "text-[5px]" : "text-sm")} style={{ fontFamily: 'var(--font-playfair)'}}>i just</span>
+             <span className={cn("font-serif font-black tracking-widest leading-none mt-1 text-[#e1d5c9]", isPreview ? "text-[8px]" : "text-2xl")}>I'M SUCH A</span>
+             <span className={cn("font-serif font-black tracking-widest leading-none text-[#e1d5c9]", isPreview ? "text-[14px]" : "text-5xl")} style={{ letterSpacing: '0.05em' }}>FOOL</span>
+             <span className={cn("font-serif font-black tracking-widest leading-none mt-1 text-[#e1d5c9]", isPreview ? "text-[8px]" : "text-2xl")}>FOR YOU</span>
+          </div>
+
+        </div>
+      );
+
+      return (
+        <div className={cn("flex bg-[#e8e2d9]", isPreview ? "gap-1 p-1" : "gap-4 p-8")}>
+          <Strip />
+          <Strip />
+        </div>
+      )
+    }
+  },
+  {
+    id: '1975-music-player',
+    name: '1975 Music Player',
+    photoCount: 4,
+    render: (photos, isPreview = false) => {
+      const Strip = () => (
+        <div className={cn("relative flex flex-col overflow-hidden bg-[#5a5c5f] text-white shadow-sm", isPreview ? "w-full p-2" : "w-[300px] p-6")}>
+          {/* Subtle background graphics */}
+          <div className="absolute top-0 right-0 opacity-30">
+            <svg width={isPreview ? "40" : "100"} height={isPreview ? "40" : "100"} viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M50 0 C 75 25, 100 0, 100 50 C 75 75, 50 100, 0 100" stroke="black" strokeWidth="2" fill="none" />
+              <path d="M60 0 C 85 25, 100 10, 100 60 C 85 85, 60 100, 10 100" stroke="black" strokeWidth="2" fill="none" />
+              <path d="M70 0 C 95 25, 100 20, 100 70 C 95 95, 70 100, 20 100" stroke="black" strokeWidth="2" fill="none" />
+            </svg>
+          </div>
+          <div className={cn("absolute opacity-50", isPreview ? "top-1 left-1" : "top-4 left-4")}>
+             <svg width={isPreview ? "10" : "24"} height={isPreview ? "10" : "24"} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 0L14.5 9.5L24 12L14.5 14.5L12 24L9.5 14.5L0 12L9.5 9.5L12 0Z" fill="black"/>
+             </svg>
+          </div>
+
+          <div className={cn("relative z-10 flex flex-col", isPreview ? "gap-2" : "gap-4")}>
+            {Array.from({ length: 4 }).map((_, i) => (
+              <div key={i} className="w-full bg-gray-200 overflow-hidden relative border-2 border-black" style={{ aspectRatio: '3/2', borderRadius: isPreview ? '4px' : '12px' }}>
+                 {photos[i] ? (
+                  <img src={photos[i]!} alt={`Photo ${i+1}`} className="w-full h-full object-cover" />
+                ) : (
+                  <div className="text-gray-400 text-xs w-full h-full flex items-center justify-center bg-[#4a4c4f]">Photo {i+1}</div>
+                )}
+              </div>
+            ))}
+          </div>
+
+          {/* Music Player UI */}
+          <div className={cn("w-full flex flex-col items-center z-10", isPreview ? "mt-2" : "mt-6")}>
+             <div className={cn("font-bold text-white", isPreview ? "text-[6px]" : "text-sm")}>About You</div>
+             <div className={cn("text-gray-300", isPreview ? "text-[4.5px]" : "text-[10px]")}>The 1975</div>
+             
+             {/* Progress Bar */}
+             <div className={cn("w-full flex items-center justify-between font-sans", isPreview ? "mt-1 text-[4px]" : "mt-3 text-[9px]")}>
+                <span>1:07</span>
+                <div className={cn("flex-1 bg-gray-500 rounded-full relative mx-1.5", isPreview ? "h-[1.5px]" : "h-[3px]")}>
+                   <div className="absolute top-0 left-0 h-full bg-white rounded-full w-1/3"></div>
+                   <div className={cn("absolute top-1/2 -translate-y-1/2 left-1/3 bg-white rounded-full", isPreview ? "w-1 h-1" : "w-2 h-2")}></div>
+                </div>
+                <span>-4:19</span>
+             </div>
+
+             {/* Controls */}
+             <div className={cn("w-full flex items-center justify-center", isPreview ? "mt-1 gap-2" : "mt-3 gap-6")}>
+                 <svg width={isPreview ? "6" : "12"} height={isPreview ? "6" : "12"} viewBox="0 0 24 24" fill="white"><path d="M11 18V6l-8.5 6 8.5 6zm.5-6l8.5 6V6l-8.5 6z"/></svg> 
+                 <svg width={isPreview ? "10" : "20"} height={isPreview ? "10" : "20"} viewBox="0 0 24 24" fill="white"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+                 <svg width={isPreview ? "6" : "12"} height={isPreview ? "6" : "12"} viewBox="0 0 24 24" fill="white"><path d="M4 18l8.5-6L4 6v12zm9-12v12l8.5-6L13 6z"/></svg>
+             </div>
+          </div>
+        </div>
+      );
+
+      return (
+        <div className={cn("flex", isPreview ? "gap-1" : "gap-4")}>
+          <Strip />
+          <Strip />
+        </div>
+      )
+    }
+  },
+  {
+    id: 'theater-ticket',
+    name: 'Theater Ticket',
+    photoCount: 3,
+    render: (photos, isPreview = false) => {
+      const Strip = () => (
+        <div className={cn("relative flex flex-col items-center bg-[#FDF5EC] text-black shadow-sm shrink-0", isPreview ? "w-full p-1" : "w-[300px] p-2.5")}>
+          <div className={cn("w-full h-full border-[#a02c2c] flex flex-col relative", isPreview ? "border p-1" : "border-[2px] p-3")}>
+             
+             {/* Header */}
+             <div className="w-full flex justify-center text-center flex-col items-center">
+                <span className={cn("font-serif font-black tracking-tighter text-[#a02c2c] leading-none", isPreview ? "text-[12px]" : "text-[26px] mt-1")} style={{ transform: 'scaleY(1.15)' }}>THEATER TICKET</span>
+                <span className={cn("text-[#a02c2c] leading-none", isPreview ? "text-[6px] mt-0.5 gap-0.5" : "text-sm mt-2 flex gap-1 tracking-widest")}>★ ★ ★</span>
+                <span className={cn("font-serif italic text-black/80 font-medium", isPreview ? "text-[5px] mt-0.5" : "text-[13px] mt-2")} style={{ fontFamily: '"Brush Script MT", "Apple Chancery", cursive, serif' }}>Additional Cinema Ticket</span>
+                <span className={cn("font-serif italic text-[#a02c2c]", isPreview ? "text-[4px]" : "text-[10px] mt-0.5")} style={{ fontFamily: '"Brush Script MT", "Apple Chancery", cursive, serif' }}>Live Laugh Love</span>
+             </div>
+
+             {/* Photos */}
+             <div className={cn("flex flex-col w-full z-10", isPreview ? "gap-1 mt-1" : "gap-[14px] mt-4")}>
+               {Array.from({ length: 3 }).map((_, i) => (
+                  <div key={i} className="bg-white w-full overflow-hidden flex items-center justify-center relative shadow-sm border border-black/10" style={{ aspectRatio: '1.4/1' }}>
+                    {photos[i] ? (
+                      <img src={photos[i]!} alt={`Photo ${i+1}`} className="w-full h-full object-cover" />
+                    ) : (
+                      <div className="text-gray-400 text-xs w-full h-full flex items-center justify-center bg-gray-100">Photo {i+1}</div>
+                    )}
+                  </div>
+               ))}
+             </div>
+
+             {/* Little Decorations */}
+             {/* Masks */}
+             {!isPreview && (
+               <div className="absolute right-0 top-[26%] translate-x-1/2 flex group drop-shadow-md z-20">
+                 {/* Frown Mask (Back) */}
+                 <svg width="28" height="28" viewBox="0 0 24 24" fill="#a02c2c" className="absolute rotate-[20deg] translate-x-2 -translate-y-1 drop-shadow-sm">
+                   <path d="M12 2C6.48 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm3.5-9c.83 0 1.5-.67 1.5-1.5S16.33 8 15.5 8 14 8.67 14 9.5s.67 1.5 1.5 1.5zm-7 0c.83 0 1.5-.67 1.5-1.5S9.33 8 8.5 8 7 8.67 7 9.5 7.67 11 8.5 11zm3.5 3.5c-2.33 0-4.31 1.46-5.11 3.5h10.22c-.8-2.04-2.78-3.5-5.11-3.5z"/>
+                 </svg>
+                 {/* Smile Mask (Front) */}
+                 <svg width="28" height="28" viewBox="0 0 24 24" fill="#a02c2c" className="relative -rotate-[10deg] bg-[#FDF5EC] rounded-full drop-shadow-sm">
+                   <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm3.5-9c.83 0 1.5-.67 1.5-1.5S16.33 8 15.5 8 14 8.67 14 9.5s.67 1.5 1.5 1.5zm-7 0c.83 0 1.5-.67 1.5-1.5S9.33 8 8.5 8 7 8.67 7 9.5 7.67 11 8.5 11zm3.5 6.5c2.33 0 4.31-1.46 5.11-3.5H6.89c.8 2.04 2.78 3.5 5.11 3.5z"/>
+                 </svg>
+               </div>
+             )}
+
+             {/* Little tickets */}
+             {!isPreview && (
+               <div className="absolute left-[-15px] bottom-[26%] -rotate-[25deg] flex drop-shadow-sm z-20">
+                 <div className="w-7 h-4 bg-[#a02c2c] border border-white flex items-center justify-between px-0.5 rounded-[1px] absolute rotate-12 translate-x-2 -translate-y-2 shadow-sm"></div>
+                 <div className="w-7 h-4 bg-[#3da4db] border border-white flex items-center justify-between px-0.5 rounded-[1px] relative shadow-sm">
+                    <div className="w-[1px] h-full border-r border-dotted border-white/80"></div>
+                 </div>
+               </div>
+             )}
+
+             {/* Footer area Ticket Box */}
+             <div className={cn("w-full border-[#a02c2c] flex flex-col z-10", isPreview ? "border mt-1" : "border-[2px] mt-4")}>
+                <div className={cn("flex flex-col items-center pb-1", isPreview ? "pt-0.5" : "pt-2")}>
+                  <span className={cn("font-serif font-black tracking-tight text-[#a02c2c] leading-none", isPreview ? "text-[9px]" : "text-xl")} style={{ transform: 'scaleY(1.15)' }}>THEATER TICKET</span>
+                  <span className={cn("text-[#a02c2c] leading-none", isPreview ? "text-[4px] mt-[2px] flex gap-[1px] tracking-widest" : "text-[8px] mt-[3px] flex gap-1 tracking-widest")}>★ ★ ★</span>
+                  <span className={cn("font-serif italic text-black/80 font-medium", isPreview ? "text-[4px] mt-[2px]" : "text-[11px] mt-1")} style={{ fontFamily: '"Brush Script MT", "Apple Chancery", cursive, serif' }}>Additional Cinema Ticket</span>
+                </div>
+                
+                <div className={cn("w-full grid grid-cols-[1fr_auto_auto] border-t border-[#a02c2c] divide-x divide-[#a02c2c]", isPreview ? "border-t-[1px] divide-x-[1px]" : "border-t-[2px] divide-x-[2px]")}>
+                   <div className={cn("flex flex-col justify-center items-center bg-[#FDF5EC]", isPreview ? "p-0.5" : "py-1.5")}>
+                      <span className={cn("font-bold text-[#a02c2c] tracking-tight", isPreview ? "text-[5px]" : "text-[12px]")}>MON, JUN 29</span>
+                      <span className={cn("font-bold text-[#a02c2c]", isPreview ? "text-[5px]" : "text-sm leading-none mt-1")}>21:30</span>
+                   </div>
+                   <div className={cn("flex flex-col justify-center items-center text-[#a02c2c] bg-[#FDF5EC]", isPreview ? "px-1.5 py-0.5" : "px-4 py-1.5")}>
+                      <span className={cn("font-bold uppercase tracking-widest", isPreview ? "text-[4px]" : "text-[9px]")}>Row</span>
+                      <span className={cn("font-bold", isPreview ? "text-[5px]" : "text-sm leading-none mt-1")}>38</span>
+                   </div>
+                   <div className={cn("flex flex-col justify-center items-center text-[#a02c2c] bg-[#FDF5EC]", isPreview ? "px-1.5 py-0.5" : "px-4 py-1.5")}>
+                      <span className={cn("font-bold uppercase tracking-widest", isPreview ? "text-[4px]" : "text-[9px]")}>Seat</span>
+                      <span className={cn("font-bold", isPreview ? "text-[5px]" : "text-sm leading-none mt-1")}>A45</span>
+                   </div>
+                </div>
+             </div>
+
+          </div>
+        </div>
+      );
+
+      return (
+        <div className={cn("flex bg-[#8ba6c6] p-8 gap-4 w-full h-full items-center justify-center overflow-auto")}
+             style={{ 
+               backgroundImage: `radial-gradient(circle, #7a94b2 1.5px, transparent 1.5px)`, 
+               backgroundSize: '12px 12px' 
+             }}>
+          <Strip />
+          <Strip />
+        </div>
+      )
+    }
+  },
+  {
     id: 'una-grid',
     name: 'Una Maroon (2x4)',
     photoCount: 8,
@@ -54,7 +278,7 @@ export const templates: FrameTemplate[] = [
         
         {/* Header Decor */}
         <div className="text-center w-full uppercase">
-           <div className={cn("font-black tracking-[0.2em] border border-black inline-block", isPreview ? "text-[4px] px-1" : "text-[10px] px-2 py-1")}>JEPRETO</div>
+           <div className={cn("font-black tracking-[0.2em] border border-black inline-block", isPreview ? "text-[4px] px-1" : "text-[10px] px-2 py-1")}>PHOTOBOOTH TRE-PAGI A</div>
            <div className={cn("w-full border-t border-b border-black mt-2", isPreview ? "border-t-[1px] border-b-[1px] py-1" : "border-t-[3px] border-b-[3px] py-4 mt-6")}>
               <h2 className={cn("font-bold tracking-widest text-[#222] flex items-center justify-center gap-2", isPreview ? "text-xs" : "text-2xl")}>
                 <span className={cn("bg-black", isPreview ? "w-4 h-[2px]" : "w-12 h-2")}></span>
@@ -115,7 +339,7 @@ export const templates: FrameTemplate[] = [
     photoCount: 6,
     render: (photos, isPreview = false) => (
       <div className={cn("relative bg-[#3b5d3a] flex flex-col font-sans",
-        isPreview ? "w-full p-2 h-[450px]" : "w-[600px] p-6 h-[850px]"
+        isPreview ? "w-full p-2 min-h-[450px]" : "w-[600px] p-6 min-h-[850px]"
       )}>
         {/* Header Decor */}
         <div className={cn("flex justify-between items-start", isPreview ? "mb-1" : "mb-4")}>
@@ -178,7 +402,7 @@ export const templates: FrameTemplate[] = [
         <div className={cn("flex justify-between items-center text-[#222] font-black border-y-2 border-[#222]", isPreview ? "text-[4.5px] py-[2px] mt-2 mb-2" : "text-xs py-2 mt-2 mb-6")}>
            <span>VOL. 1... NO. 5</span>
            <span>*</span>
-           <span>GAYAPOTRETPADANG.ID</span>
+           <span>PHOTOBOOTH TRE-PAGI A</span>
            <span>*</span>
            <span>01 JAN 2026</span>
         </div>
@@ -245,7 +469,7 @@ export const templates: FrameTemplate[] = [
     photoCount: 3,
     render: (photos, isPreview = false) => (
       <div className={cn("relative flex flex-col items-center overflow-hidden", 
-        isPreview ? "w-full p-2 h-[450px]" : "w-[350px] p-8 h-[950px]"
+        isPreview ? "w-full p-2 min-h-[450px]" : "w-[350px] p-8 min-h-[950px]"
       )}
       style={{
         background: 'linear-gradient(to bottom, #113651, #3672a9, #7cbbe1)',
@@ -288,7 +512,7 @@ export const templates: FrameTemplate[] = [
     photoCount: 3,
     render: (photos, isPreview = false) => (
       <div className={cn("relative flex flex-col items-center bg-[#f4ebd9]", 
-        isPreview ? "w-full p-2 h-[450px]" : "w-[350px] pt-4 pb-12 px-0 h-[1000px]"
+        isPreview ? "w-full p-2 min-h-[450px]" : "w-[350px] pt-4 pb-12 px-0 min-h-[1000px]"
       )}>
         {/* Fake Polaroid Camera Top */}
         <div className={cn("bg-[#f0f0f0] w-[95%] rounded-t-xl rounded-b px-4 flex flex-col relative shadow-[0_10px_20px_rgba(0,0,0,0.3)] z-20", isPreview ? "py-2" : "py-6 mt-4")}>
@@ -371,7 +595,7 @@ export const templates: FrameTemplate[] = [
     photoCount: 3,
     render: (photos, isPreview = false) => (
       <div className={cn("relative flex flex-col overflow-hidden items-center justify-center font-sans shadow-xl", 
-        isPreview ? "w-full p-2 gap-2 h-[450px]" : "w-[380px] p-8 gap-8 h-[950px]"
+        isPreview ? "w-full p-2 gap-2 min-h-[450px]" : "w-[380px] p-8 gap-8 min-h-[950px]"
       )}
       style={{
         backgroundColor: '#facfd4',
@@ -417,7 +641,7 @@ export const templates: FrameTemplate[] = [
         )}>
            <div className={cn("text-center mb-4 flex flex-col items-center", isPreview ? "mb-2" : "")}>
               <div className={cn("text-[#8c7f70] tracking-[0.2em] uppercase", isPreview ? "text-[5px] mb-1" : "text-[10px] mb-2")}>
-                — KALA BOOTH —
+                — PHOTOBOOTH TRE-PAGI A —
               </div>
               <div className={cn("font-serif text-[#333] flex items-center justify-center gap-2", isPreview ? "text-[8px] mb-1" : "text-[18px] mb-3")}>
                 <span className="text-[#a0a0a0] font-sans scale-150 rotate-45 transform origin-center text-xs">✂</span>
@@ -695,7 +919,7 @@ export const templates: FrameTemplate[] = [
         
         {/* Footer */}
         <div className={cn("bg-black text-white text-center rounded text-white font-sans mt-6 font-bold", isPreview ? "px-2 py-[1px] text-[4px] mt-2" : "px-6 py-2 text-xs mt-6 mx-8")}>
-           @kalabooth
+           PHOTOBOOTH TRE-PAGI A
         </div>
       </div>
     ),

@@ -34,6 +34,27 @@
   .slide-in-from-bottom-8 {
     animation-name: slideInFromBottom8;
   }
+
+  .animate-flash {
+    animation: flash 0.5s ease-out forwards;
+  }
+
+  .animate-countdown {
+    animation: countdownZoom 1s ease-in-out forwards;
+  }
+}
+
+@keyframes flash {
+  0% { opacity: 0; background-color: white; }
+  10% { opacity: 1; background-color: white; }
+  100% { opacity: 0; background-color: transparent; }
+}
+
+@keyframes countdownZoom {
+  0% { transform: scale(0.3); opacity: 0; }
+  30% { transform: scale(1.1); opacity: 1; }
+  60% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(1.5); opacity: 0; }
 }
 
 @keyframes fadeIn {
