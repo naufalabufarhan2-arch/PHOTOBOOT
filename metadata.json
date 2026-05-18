@@ -1,0 +1,10 @@
+{
+  "name": "Custom Photobooth",
+  "description": "A web-based photobooth with custom frame layouts.",
+  "requestFramePermissions": [
+    "camera"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
